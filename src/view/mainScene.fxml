@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -12,23 +13,32 @@
                <font>
                   <Font size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="partModifyBtn" layoutX="346.0" layoutY="356.0" mnemonicParsing="false" text="Modify">
                <font>
                   <Font size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="partDeleteBtn" layoutX="418.0" layoutY="356.0" mnemonicParsing="false" text="Delete">
                <font>
                   <Font size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <TableView fx:id="partsTableView" layoutX="14.0" layoutY="49.0" prefHeight="296.0" prefWidth="462.0">
               <columns>
-                <TableColumn fx:id="partID" prefWidth="75.0" text="Part ID" />
-                <TableColumn fx:id="partName" prefWidth="110.0" text="Part Name" />
-                  <TableColumn fx:id="partInvLvl" prefWidth="101.0" text="Inventory Level" />
-                  <TableColumn fx:id="partCost" prefWidth="175.0" text="Price/Cost per Unit" />
+                <TableColumn fx:id="partIDCol" prefWidth="75.0" text="Part ID" />
+                <TableColumn fx:id="partNameCol" prefWidth="110.0" text="Part Name" />
+                  <TableColumn fx:id="partInvLvlCol" prefWidth="101.0" text="Inventory Level" />
+                  <TableColumn fx:id="partCostCol" prefWidth="175.0" text="Price/Cost per Unit" />
               </columns>
             </TableView>
             <Label layoutX="32.0" layoutY="15.0" text="Parts">
@@ -42,29 +52,38 @@
             <Font name="SansSerif Bold" size="24.0" />
          </font>
       </Label>
-      <Pane fx:id="productsTableView" layoutX="520.0" layoutY="99.0" prefHeight="395.0" prefWidth="490.0" style="-fx-border-radius: 10; -fx-border-color: black;">
+      <Pane layoutX="520.0" layoutY="99.0" prefHeight="395.0" prefWidth="490.0" style="-fx-border-radius: 10; -fx-border-color: black;">
          <children>
             <Button fx:id="productAddBtn" layoutX="294.0" layoutY="356.0" mnemonicParsing="false" text="Add">
                <font>
                   <Font size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="productModifyBtn" layoutX="346.0" layoutY="356.0" mnemonicParsing="false" text="Modify">
                <font>
                   <Font size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="productDeleteBtn" layoutX="418.0" layoutY="356.0" mnemonicParsing="false" text="Delete">
                <font>
                   <Font size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <TableView fx:id="productsTableView" layoutX="14.0" layoutY="49.0" prefHeight="296.0" prefWidth="462.0">
                <columns>
-                  <TableColumn fx:id="productID" prefWidth="75.0" text="Product ID" />
-                  <TableColumn fx:id="productName" prefWidth="110.0" text="Product Name" />
-                  <TableColumn fx:id="productInvLvl" prefWidth="101.0" text="Inventory Level" />
-                  <TableColumn fx:id="productCost" prefWidth="175.0" text="Price/Cost per Unit" />
+                  <TableColumn fx:id="productIDCol" prefWidth="75.0" text="Product ID" />
+                  <TableColumn fx:id="productNameCol" prefWidth="110.0" text="Product Name" />
+                  <TableColumn fx:id="productInvLvlCol" prefWidth="101.0" text="Inventory Level" />
+                  <TableColumn fx:id="productCostCol" prefWidth="175.0" text="Price/Cost per Unit" />
                </columns>
             </TableView>
             <Label layoutX="32.0" layoutY="15.0" text="Products">
@@ -78,6 +97,9 @@
          <font>
             <Font size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>
