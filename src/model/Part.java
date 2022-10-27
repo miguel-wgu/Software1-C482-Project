@@ -1,11 +1,13 @@
-package model; /**
+package model;
+/**
  * Supplied class Part.java
  */
 
 /**
  *
- * @author Place Your Name Here
+ * @author Miguel Guzman
  */
+
 public abstract class Part {
 	private int id;
 	private String name;
