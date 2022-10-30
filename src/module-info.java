@@ -7,5 +7,7 @@ module miguel.software1c482project {
 	opens model to javafx.base;
 	exports controller;
 	exports main;
+	exports helper;
+	opens helper to javafx.fxml;
 
 }
