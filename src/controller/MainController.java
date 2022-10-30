@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,8 +10,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.InHouse;
+import model.Inventory;
 import model.Part;
 import model.Product;
 
@@ -48,28 +51,30 @@ public class MainController implements Initializable {
 
 	// delete this line
 
-	private ObservableList<Part> allParts = javafx.collections.FXCollections.observableArrayList();
+	private ObservableList<Part> allParts = Inventory.getAllParts();
 	private ObservableList<Product> allProducts = javafx.collections.FXCollections.observableArrayList();
-	InHouse part1 = new InHouse(1, "test", 1.0, 1, 1, 1, 1);
-	InHouse part2 = new InHouse(2, "test2", 2.0, 2, 2, 2, 2);
-	Product product1 = new Product(1, "test", 1.0, 1, 1, 1);
-	Product product2 = new Product(2, "test2", 2.0, 2, 2, 2);
+//	InHouse part1 = new InHouse(1, "test", 1.0, 1, 1, 1, 1);
+//	InHouse part2 = new InHouse(2, "test2", 2.0, 2, 2, 2, 2);
+//	Product product1 = new Product(1, "test", 1.0, 1, 1, 1);
+//	Product product2 = new Product(2, "test2", 2.0, 2, 2, 2);
 
 	boolean flag = true;
 
-	private void sampleData() {
-		if (!flag) { return;
-		} else {
-			allParts.add(part1);
-			allParts.add(part2);
-			allProducts.add(product1);
-			allProducts.add(product2);
-			flag = false;
-		}
-	}
+//	private void sampleData() {
+//		if (!flag) { return;
+//		} else {
+//			for(Part p : allParts) {
+//				allParts.add(Inventory.getAllParts());
+//			}
+//			allParts.add(part2);
+//			allProducts.add(product1);
+//			allProducts.add(product2);
+//			flag = false;
+//		}
+//	}
 
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		sampleData();
+//		sampleData();
 		partsTableView.setItems(allParts);
 		partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
 		partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -147,12 +152,37 @@ public class MainController implements Initializable {
 		Part part = partsTableView.getSelectionModel().getSelectedItem();
 		if (part != null) {
 			Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-			confirm.setTitle("Confirmation");
-			confirm.setContentText("Are you sure you want to delete?");
+			confirm.setTitle("Confirm Delete");
+			confirm.setHeaderText("Warning!");
+			confirm.setContentText("Are you sure you want to delete this part?");
 			Optional<ButtonType> input = confirm.showAndWait();
 			if (input.isPresent() && input.get() == ButtonType.OK) allParts.remove(part);
 		}
 		else errMsg(1);
+	}
+
+	/**
+	 * Searches for part by name or ID.
+	 *
+	 * If no part is found, an error message will be displayed,
+	 * the search field will clear, and the table will be refreshed.
+	 *
+	 * @param actionEvent defines the action of the search field.
+	 *
+	 */
+	@FXML void partSearchOnKeyPress(ActionEvent actionEvent) {
+		TextField search = (TextField) actionEvent.getSource();
+		String input = search.getText();
+		ObservableList<Part> searchResults = FXCollections.observableArrayList();
+		for (Part part : allParts) {
+			if (part.getName().contains(input) || Integer.toString(part.getId()).contains(input)) searchResults.add(part);
+		}
+		partsTableView.setItems(searchResults);
+		if (searchResults.isEmpty()) {
+			errMsg(2);
+			partsTableView.setItems(allParts);
+			search.clear();
+		}
 	}
 
 	@FXML void productAddOnClick(ActionEvent actionEvent) {
@@ -167,6 +197,10 @@ public class MainController implements Initializable {
 
 	}
 
+	@FXML void productSearchOnKeyPress(ActionEvent actionEvent) {
+
+	}
+
 	private void errMsg(int errCode) {
 		Alert info = new Alert(Alert.AlertType.INFORMATION);
 		Alert err = new Alert(Alert.AlertType.ERROR);
@@ -175,8 +209,15 @@ public class MainController implements Initializable {
 			err.setTitle("An error has occurred!");
 			err.setHeaderText("Please select a part!");
 			err.showAndWait();
+		} else if (errCode == 2) {
+			info.setTitle("Not Found");
+			info.setHeaderText("The part you are looking for was not found.");
+			info.showAndWait();
 		}
 	}
+}
+
+
 //
 //	private void displayAlert(int alertType) {
 //
@@ -194,11 +235,6 @@ public class MainController implements Initializable {
 //				alert.setHeaderText("Product not found");
 //				alert.showAndWait();
 //				break;
-//			case 3:
-//				alertError.setTitle("Error");
-//				alertError.setHeaderText("Part not selected");
-//				alertError.showAndWait();
-//				break;
 //			case 4:
 //				alertError.setTitle("Error");
 //				alertError.setHeaderText("Product not selected");
@@ -212,4 +248,3 @@ public class MainController implements Initializable {
 //				break;
 //		}
 //	}
-}

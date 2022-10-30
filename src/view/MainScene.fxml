@@ -46,6 +46,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <TextField fx:id="partTextField" layoutX="294.0" layoutY="23.0" onAction="#partSearchOnKeyPress" promptText="Search by Part ID or Name" />
          </children></Pane>
       <Label layoutX="335.0" layoutY="39.0" text="Inventory Management System">
          <font>
@@ -91,6 +92,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <TextField fx:id="productTextField" layoutX="294.0" layoutY="23.0" onAction="#productSearchOnKeyPress" promptText="Search by Part ID or Name" />
          </children>
       </Pane>
       <Button fx:id="exitBtn" layoutX="492.0" layoutY="506.0" mnemonicParsing="false" onAction="#exitOnClick" text="Exit">
