@@ -2,17 +2,47 @@ package helper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.Inventory;
 import model.Part;
 
+import java.io.IOException;
+
+
+/*******IMPROVEMENT*******
+ * I can find a way to really clean up and maybe improve the code below.
+ */
+
+/**
+ * A helper class for common functions to reduce code repetition.
+ */
 public class CommonFunctions {
 	private CommonFunctions() {
 	}
 
+	/**
+	 * Gets parts table.
+	 *
+	 * @param partsTableView           the parts table view.
+	 * @param partIDCol                the part id col.
+	 * @param partNameCol              the part name col.
+	 * @param partInvLvlCol            the part inv lvl col.
+	 * @param partCostCol              the part cost col.
+	 * @param associatedPartsTableView the associated parts table view.
+	 * @param associatedParts          the associated parts.
+	 * @param associatedPartIdCol      the associated part id col.
+	 * @param associatedPartNameCol    the associated part name col.
+	 * @param associatedPartInvLvlCol  the associated part inv lvl col.
+	 * @param associatedPartCostCol    the associated part cost col.
+	 */
 	public static void getPartsTable(TableView<Part> partsTableView,
 	                                 TableColumn<Part, Integer> partIDCol,
 	                                 TableColumn<Part, String> partNameCol,
@@ -33,6 +63,16 @@ public class CommonFunctions {
 				associatedPartNameCol, associatedPartInvLvlCol, associatedPartCostCol);
 	}
 
+	/**
+	 * Gets associated parts table.
+	 *
+	 * @param associatedPartsTableView the associated parts table view.
+	 * @param associatedParts          the associated parts.
+	 * @param associatedPartIdCol      the associated part id col.
+	 * @param associatedPartNameCol    the associated part name col.
+	 * @param associatedPartInvLvlCol  the associated part inv lvl col.
+	 * @param associatedPartCostCol    the associated part cost col.
+	 */
 	public static void getAssociatedPartsTable(TableView<Part> associatedPartsTableView,
 	                                           ObservableList<Part> associatedParts,
 	                                           TableColumn<Part, Integer> associatedPartIdCol,
@@ -46,7 +86,18 @@ public class CommonFunctions {
 		associatedPartCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 	}
 
-	public static void getSearchResults(TextField search, String input, ObservableList<Part> allParts, TableView<Part> partsTableView) {
+	/**
+	 * Gets search results.
+	 *
+	 * @param search         the search.
+	 * @param input          the input.
+	 * @param allParts       the all parts.
+	 * @param partsTableView the parts table view.
+	 */
+	public static void getSearchResults(TextField search,
+	                                    String input,
+	                                    ObservableList<Part> allParts,
+	                                    TableView<Part> partsTableView) {
 		ObservableList<Part> searchResults = FXCollections.observableArrayList();
 		for (Part part : allParts) {
 			if (part.getName().contains(input) || Integer.toString(part.getId()).contains(input))
@@ -57,6 +108,25 @@ public class CommonFunctions {
 			ErrMsg.displayErrMsg(10);
 			partsTableView.setItems(allParts);
 			search.clear();
+		}
+	}
+
+	/**
+	 * Returns to Main Window.
+	 *
+	 * @param actionEvent the action event.
+	 * @throws IOException the io exception.
+	 */
+	public static void mainWindow(ActionEvent actionEvent) throws IOException {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(CommonFunctions.class.getResource("/view/MainScene.fxml"));
+			Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+			Scene scene = new Scene(fxmlLoader.load());
+			stage.setTitle("Inventory Management System");
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

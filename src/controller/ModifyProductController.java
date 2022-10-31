@@ -2,7 +2,6 @@ package controller;
 
 import helper.CommonFunctions;
 import helper.ErrMsg;
-import helper.ReturnToMainWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -156,7 +155,7 @@ public class ModifyProductController implements Initializable {
 				}
 				Inventory.addProduct(product);
 				Inventory.deleteProduct(selectedProduct);
-				ReturnToMainWindow.mainWindow(actionEvent);
+				CommonFunctions.mainWindow(actionEvent);
 			}
 		} catch (NumberFormatException | IOException e) {
 			System.Logger logger = System.getLogger("AddProductController");
@@ -171,7 +170,7 @@ public class ModifyProductController implements Initializable {
 	 * @throws IOException the io exception.
 	 */
 	public void cancelProductOnClick(ActionEvent actionEvent) throws IOException {
-		ReturnToMainWindow.mainWindow(actionEvent);
+		CommonFunctions.mainWindow(actionEvent);
 	}
 
 	/**

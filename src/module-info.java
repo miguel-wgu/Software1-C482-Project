@@ -8,6 +8,7 @@ module miguel.software1c482project {
 	exports controller;
 	exports main;
 	exports helper;
+	exports model;
 	opens helper to javafx.fxml;
 
 }

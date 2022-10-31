@@ -1,7 +1,7 @@
 package controller;
 
+import helper.CommonFunctions;
 import helper.ErrMsg;
-import helper.ReturnToMainWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -128,13 +128,13 @@ public class ModifyPartController implements Initializable {
 					InHouse part = new InHouse(id, partName, partPrice, partInv, partMin, partMax, partMachineId);
 					Inventory.addPart(part);
 					Inventory.deletePart(selectedPart);
-					ReturnToMainWindow.mainWindow(actionEvent);
+					CommonFunctions.mainWindow(actionEvent);
 				} else if (outsourcedToggleBtn.isSelected() && verifyCompName(partMacIdTextField)) {
 					String companyName = partMacIdTextField.getText();
 					Outsourced part = new Outsourced(id, partName, partPrice, partInv, partMin, partMax, companyName);
 					Inventory.addPart(part);
 					Inventory.deletePart(selectedPart);
-					ReturnToMainWindow.mainWindow(actionEvent);
+					CommonFunctions.mainWindow(actionEvent);
 				}
 			}
 		} catch (NumberFormatException | IOException e) {
@@ -150,7 +150,7 @@ public class ModifyPartController implements Initializable {
 	 * @throws IOException the io exception.
 	 */
 	public void cancelPartOnClick(ActionEvent actionEvent) throws IOException {
-		ReturnToMainWindow.mainWindow(actionEvent);
+		CommonFunctions.mainWindow(actionEvent);
 	}
 
 	/**
