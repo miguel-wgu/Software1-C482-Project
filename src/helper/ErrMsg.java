@@ -1,10 +1,8 @@
 package helper;
 
-import controller.AddPartController;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
 
 /**
  * Helper class for error messages.
@@ -17,6 +15,7 @@ public class ErrMsg {
 	 */
 	private static final Alert err = new Alert(Alert.AlertType.ERROR);
 	private static final Alert info = new Alert(Alert.AlertType.INFORMATION);
+
 	/**
 	 * Display error message.
 	 *
@@ -24,6 +23,7 @@ public class ErrMsg {
 	 */
 	public static void displayErrMsg(int errCode) {
 		String numMsg = "Please enter a valid number";
+		String errMsg = "An error has occurred";
 		err.setTitle("Error");
 		if (errCode == 1) {
 			err.setHeaderText("Part name is empty.");
@@ -66,17 +66,25 @@ public class ErrMsg {
 			info.setHeaderText("The part you are looking for was not found.");
 			info.showAndWait();
 		} else if (errCode == 11) {
-			err.setTitle("An error has occurred!");
+			err.setTitle(errMsg);
 			err.setHeaderText("Please select a part!");
 			err.showAndWait();
 		} else if (errCode == 12) {
-			err.setTitle("An error has occurred!");
+			err.setTitle(errMsg);
 			err.setHeaderText("Please select a product!");
 			err.showAndWait();
 		} else if (errCode == 13) {
 			info.setTitle("Not Found");
 			info.setHeaderText("The product you are looking for was not found.");
 			info.showAndWait();
+		} else if (errCode == 14) {
+			err.setTitle(errMsg);
+			err.setHeaderText("Please select an associated part to remove!");
+			err.showAndWait();
+		} else if (errCode == 15) {
+			err.setTitle(errMsg);
+			err.setHeaderText("This product has associated parts, please remove them first!");
+			err.showAndWait();
 		}
 	}
 
@@ -92,30 +100,20 @@ public class ErrMsg {
 			ErrMsg.displayErrMsg(7);
 	}
 
-//	public static void productFieldsValid(TextField productNameField, TextField productInvField, TextField productPriceField, TextField productMaxField, TextField productMinField) {
-//		if (productNameField.getText().isEmpty()) displayErrMsg(1);
-//		else if (!(verifyInt(productInvField.getText())) || productInvField.getText().isEmpty())
-//			ErrMsg.displayErrMsg(4);
-//		else if (!(verifyDouble(productPriceField.getText())) || productPriceField.getText().isEmpty())
-//			ErrMsg.displayErrMsg(5);
-//		else if (!(verifyInt(productMaxField.getText())) || productMaxField.getText().isEmpty())
-//			ErrMsg.displayErrMsg(6);
-//		else if (!(verifyInt(productMinField.getText())) || productMinField.getText().isEmpty())
-//			ErrMsg.displayErrMsg(7);
-//	}
-
 	public static boolean verifyMacId(TextField partMacIdField) {
-		if (!(verifyInt(partMacIdField.getText())) || partMacIdField.getText().isEmpty()){
+		if (!(verifyInt(partMacIdField.getText())) || partMacIdField.getText().isEmpty()) {
 			ErrMsg.displayErrMsg(8);
 			return false;
-		} return true;
+		}
+		return true;
 	}
 
 	public static boolean verifyCompName(TextField partCompNameField) {
 		if (partCompNameField.getText().isEmpty()) {
 			ErrMsg.displayErrMsg(9);
 			return false;
-		} return true;
+		}
+		return true;
 	}
 
 	public static boolean verifyInt(String str) {
@@ -163,5 +161,18 @@ public class ErrMsg {
 			ErrMsg.displayErrMsg(2);
 			return false;
 		} else return true;
+	}
+
+	/**
+	 * Create alert alert.
+	 *
+	 * @return the alert
+	 */
+	@FXML
+	public static Alert createAlert() {
+		Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+		confirm.setTitle("Confirm Delete");
+		confirm.setHeaderText("Warning!");
+		return confirm;
 	}
 }

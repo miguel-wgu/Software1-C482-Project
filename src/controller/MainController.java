@@ -1,7 +1,7 @@
 package controller;
 
+import helper.CommonFunctions;
 import helper.ErrMsg;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,16 +12,48 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.InHouse;
 import model.Inventory;
 import model.Part;
 import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.ProtectionDomain;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+/**
+ * RUNTIME ERROR
+ * <p>
+ * Originally defined exitOnClick in controller.
+ * Made some changes to the mainView.fxml file and
+ * exitOnClick was no longer linked between the
+ * MainController and MainScene.
+ * Code would not run, and it took quite a while to
+ * figure it out. I had to look for types while also
+ * trying to make sense of the error message.
+ * <p>
+ * IMPROVEMENT
+ * <p>
+ * A future improvement to de-clutter the code would be to
+ * transfer the Products table code (under initialize) over
+ * to the CommonFunctions class.
+ * <p>
+ * IMPROVEMENT
+ * <p>
+ * A future improvement to de-clutter the code would be to
+ * transfer the Products table code (under initialize) over
+ * to the CommonFunctions class.
+ */
+
+
+/**
+ * IMPROVEMENT
+ * <p>
+ * A future improvement to de-clutter the code would be to
+ * transfer the Products table code (under initialize) over
+ * to the CommonFunctions class.
+ */
+
 
 /**
  * Controller class for Main.fxml.
@@ -30,51 +62,101 @@ import java.util.ResourceBundle;
  *
  * @author Miguel Guzman
  */
-
 public class MainController implements Initializable {
 
-
+	/**
+	 * The constant selectedPart.
+	 */
+	private static Part selectedPart;
+	/**
+	 * The constant selectedProduct.
+	 */
+	private static Product selectedProduct;
+	/**
+	 * List used to hold parts to be displayed in the table.
+	 */
+	private final ObservableList<Part> allParts = Inventory.getAllParts();
+	/**
+	 * List used to hold products to be displayed in the table.
+	 */
+	private final ObservableList<Product> allProducts = Inventory.getAllProducts();
+	/**
+	 * The Parts table view.
+	 */
 	@FXML
 	private TableView<Part> partsTableView;
+	/**
+	 * The Part id col.
+	 */
 	@FXML
 	private TableColumn<Part, Integer> partIDCol;
+	/**
+	 * The Part name col.
+	 */
 	@FXML
 	private TableColumn<Part, String> partNameCol;
+	/**
+	 * The Part inv lvl col.
+	 */
 	@FXML
 	private TableColumn<Part, Integer> partInvLvlCol;
+	/**
+	 * The Part cost col.
+	 */
 	@FXML
 	private TableColumn<Part, Double> partCostCol;
-
+	/**
+	 * The Products table view.
+	 */
 	@FXML
 	private TableView<Product> productsTableView;
+	/**
+	 * The Product id col.
+	 */
 	@FXML
 	private TableColumn<Product, Integer> productIDCol;
+	/**
+	 * The Product name col.
+	 */
 	@FXML
 	private TableColumn<Product, String> productNameCol;
+	/**
+	 * The Product inv lvl col.
+	 */
 	@FXML
 	private TableColumn<Product, Integer> productInvLvlCol;
+	/**
+	 * The Product cost col.
+	 */
 	@FXML
 	private TableColumn<Product, Double> productCostCol;
 
+	/**
+	 * Gets selected part when part is selected in the parts table.
+	 *
+	 * @return the selected part
+	 */
+	public static Part getSelectedPart() {
+		return selectedPart;
+	}
 
-	// delete this line
+	/**
+	 * Gets selected product when product is selected in the products table.
+	 *
+	 * @return the selected product
+	 */
+	public static Product getSelectedProduct() {
+		return selectedProduct;
+	}
 
-	private ObservableList<Part> allParts = Inventory.getAllParts();
-	private ObservableList<Product> allProducts = Inventory.getAllProducts();
-	InHouse part1 = new InHouse(1, "test", 1.00, 1, 1, 1, 1);
-	InHouse part2 = new InHouse(2, "test2", 2.00, 2, 2, 2, 2);
-	InHouse part3 = new InHouse(3, "test3", 3.00, 3, 3, 3, 3);
-
+	/**
+	 * Initialize.
+	 *
+	 * @param url            the url
+	 * @param resourceBundle the resource bundle
+	 */
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		allParts.add(part1);
-		allParts.add(part2);
-		allParts.add(part3);
-		partsTableView.setItems(allParts);
-		partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-		partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-		partInvLvlCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-		partCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+		CommonFunctions.getAssociatedPartsTable(partsTableView, allParts, partIDCol, partNameCol, partInvLvlCol, partCostCol);
 		productsTableView.setItems(allProducts);
 		productIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
 		productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -83,17 +165,7 @@ public class MainController implements Initializable {
 	}
 
 	/**
-	 * RUNTIME ERROR
-	 * <p>
-	 * Originally defined exitOnClick in controller.
-	 * Made some changes to the mainView.fxml file and
-	 * exitOnClick was no longer linked between the
-	 * MainController and MainScene.
-	 * Code would not run and it took quite a while to
-	 * figure it out. I had to look for types while also
-	 * trying to make sense of the error message.
-	 * <p>
-	 * Exit button functionality.
+	 * Exit application on click.
 	 */
 	@FXML
 	void exitOnClick() {
@@ -101,10 +173,10 @@ public class MainController implements Initializable {
 	}
 
 	/**
-	 * Loads the Add Part window.
+	 * Opens Add Part window on click.
 	 *
-	 * @param actionEvent defines the action of the add button.
-	 * @throws IOException if there is an issue with FXMLoader.
+	 * @param actionEvent the action event
+	 * @throws IOException the io exception
 	 */
 	@FXML
 	void partAddOnClick(ActionEvent actionEvent) throws IOException {
@@ -117,14 +189,14 @@ public class MainController implements Initializable {
 	}
 
 	/**
-	 * Loads the Modify Part window.
+	 * Opens Part Modify window on click.
 	 *
-	 * @param actionEvent defines the action of the modify button.
-	 * @throws IOException if there is no part selected.
+	 * @param actionEvent the action event
+	 * @throws IOException the io exception
 	 */
 	@FXML
 	void partModifyOnClick(ActionEvent actionEvent) throws IOException {
-		Part selectedPart = partsTableView.getSelectionModel().getSelectedItem();
+		selectedPart = partsTableView.getSelectionModel().getSelectedItem();
 		try {
 			if (selectedPart != null) {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ModifyPartScene.fxml"));
@@ -141,21 +213,19 @@ public class MainController implements Initializable {
 		}
 	}
 
-
 	/**
 	 * Deletes a part from the parts table.
-	 *
-	 * @param actionEvent defines the action of the delete button.
-	 *                    If the user selects "OK" the part will be deleted.
-	 *                    If the user selects "Cancel" the part will not be deleted.
-	 *                    If the user does not select anything it will throw an error.
+	 * <p>
+	 * If the user selects "OK" the part will be deleted.
+	 * If the user selects "Cancel" the part will not be deleted.
+	 * If the user does not select anything it will throw an error.
 	 */
 	@FXML
-	void partDeleteOnClick(ActionEvent actionEvent) {
+	void partDeleteOnClick() {
 		Part part = partsTableView.getSelectionModel().getSelectedItem();
 		try {
 			if (part != null) {
-				Alert confirm = createAlert();
+				Alert confirm = ErrMsg.createAlert();
 				confirm.setContentText("Are you sure you want to delete this part?");
 				Optional<ButtonType> input = confirm.showAndWait();
 				if (input.isPresent() && input.get() == ButtonType.OK) Inventory.deletePart(part);
@@ -163,14 +233,6 @@ public class MainController implements Initializable {
 		} catch (NullPointerException e) {
 			ErrMsg.displayErrMsg(11);
 		}
-	}
-
-	@FXML
-	Alert createAlert() {
-		Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-		confirm.setTitle("Confirm Delete");
-		confirm.setHeaderText("Warning!");
-		return confirm;
 	}
 
 	/**
@@ -185,20 +247,16 @@ public class MainController implements Initializable {
 	void partSearchOnKeyPress(ActionEvent actionEvent) {
 		TextField search = (TextField) actionEvent.getSource();
 		String input = search.getText();
-		ObservableList<Part> searchResults = FXCollections.observableArrayList();
-		for (Part part : allParts) {
-			if (part.getName().contains(input) || Integer.toString(part.getId()).contains(input))
-				searchResults.add(part);
-		}
-		partsTableView.setItems(searchResults);
-		if (searchResults.isEmpty()) {
-			ErrMsg.displayErrMsg(10);
-			partsTableView.setItems(allParts);
-			search.clear();
-		}
+		CommonFunctions.getSearchResults(search, input, allParts, partsTableView);
 	}
 
 
+	/**
+	 * Opens Add Product window on click.
+	 *
+	 * @param actionEvent the action event.
+	 * @throws IOException the io exception.
+	 */
 	@FXML
 	void productAddOnClick(ActionEvent actionEvent) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddProductScene.fxml"));
@@ -208,9 +266,15 @@ public class MainController implements Initializable {
 		stage.setScene(scene);
 	}
 
+	/**
+	 * Opens Modify Product window on click.
+	 *
+	 * @param actionEvent the action event.
+	 * @throws IOException the io exception.
+	 */
 	@FXML
 	void productModifyOnClick(ActionEvent actionEvent) throws IOException {
-		Product selectedProduct = productsTableView.getSelectionModel().getSelectedItem();
+		selectedProduct = productsTableView.getSelectionModel().getSelectedItem();
 		try {
 			if (selectedProduct != null) {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ModifyProductScene.fxml"));
@@ -226,30 +290,45 @@ public class MainController implements Initializable {
 	}
 
 
+	/**
+	 * Product delete on click.
+	 * <p>
+	 * If no product is selected, an error message
+	 * will be displayed.
+	 * </p>
+	 * <p>
+	 * User must confirm deletion of product.
+	 * If product has associated parts, user will
+	 * be notified and product will not be deleted.
+	 */
 	@FXML
-	void productDeleteOnClick(ActionEvent actionEvent) {
-		Product selectedProduct = productsTableView.getSelectionModel().getSelectedItem();
-//		try {
-		if (selectedProduct != null) {
-			Alert confirm = createAlert();
-			confirm.setContentText("Are you sure you want to delete this product?");
-			Optional<ButtonType> input = confirm.showAndWait();
-			if (input.isPresent() && input.get() == ButtonType.OK) {
-				ObservableList<Part> associatedParts = selectedProduct.getAllAssociatedParts();
-				System.out.println(associatedParts.size());
-				System.out.println("Hello");
-				if ((associatedParts.isEmpty())) Inventory.deleteProduct(selectedProduct);
-				else {
-					System.out.println("err");
+	void productDeleteOnClick() {
+		selectedProduct = productsTableView.getSelectionModel().getSelectedItem();
+		try {
+			if (selectedProduct != null) {
+				Alert confirm = ErrMsg.createAlert();
+				confirm.setContentText("Are you sure you want to delete this product?");
+				Optional<ButtonType> input = confirm.showAndWait();
+				if (input.isPresent() && input.get() == ButtonType.OK) {
+					ObservableList<Part> associatedParts = selectedProduct.getAllAssociatedParts();
+					if ((associatedParts.isEmpty())) Inventory.deleteProduct(selectedProduct);
+					else {
+						ErrMsg.displayErrMsg(15);
+					}
 				}
-			}
-		} else throw new NullPointerException();
-//		} catch (NullPointerException e) {
-//			ErrMsg.displayErrMsg(12);
-//		}
+			} else throw new NullPointerException();
+		} catch (NullPointerException e) {
+			ErrMsg.displayErrMsg(12);
+		}
 	}
 
-
+	/**
+	 * Product search on key press.
+	 * <p>
+	 * Returns a list of products that match the search criteria.
+	 *
+	 * @param actionEvent the action event
+	 */
 	@FXML
 	void productSearchOnKeyPress(ActionEvent actionEvent) {
 		TextField search = (TextField) actionEvent.getSource();
@@ -266,5 +345,4 @@ public class MainController implements Initializable {
 			search.clear();
 		}
 	}
-
 }
