@@ -8,16 +8,46 @@ import javafx.collections.ObservableList;
  *
  * @author Miguel Guzman
  */
-
 public class Product {
+	/**
+	 * The Associated parts.
+	 */
 	private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+	/**
+	 * The Id.
+	 */
 	private int id;
+	/**
+	 * The Name.
+	 */
 	private String name;
+	/**
+	 * The Price.
+	 */
 	private double price;
+	/**
+	 * The Stock.
+	 */
 	private int stock;
+	/**
+	 * The Min.
+	 */
 	private int min;
+	/**
+	 * The Max.
+	 */
 	private int max;
 
+	/**
+	 * Instantiates a new Product.
+	 *
+	 * @param id    the id.
+	 * @param name  the name.
+	 * @param price the price.
+	 * @param stock the stock.
+	 * @param min   the min.
+	 * @param max   the max.
+	 */
 	public Product(int id, String name, double price, int stock, int min, int max) {
 		this.id = id;
 		this.name = name;
@@ -28,48 +58,8 @@ public class Product {
 	}
 
 	/**
-	 * @param id sets the id.
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
-	 * @param name sets the name.
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * @param price sets the price.
-	 */
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	/**
-	 * @param stock sets the stock.
-	 */
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-
-	/**
-	 * @param min sets the min.
-	 */
-	public void setMin(int min) {
-		this.min = min;
-	}
-
-	/**
-	 * @param max sets the max.
-	 */
-	public void setMax(int max) {
-		this.max = max;
-	}
-
-	/**
+	 * Gets id.
+	 *
 	 * @return the id.
 	 */
 	public int getId() {
@@ -77,6 +67,17 @@ public class Product {
 	}
 
 	/**
+	 * Sets id.
+	 *
+	 * @param id sets the id.
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * Gets name.
+	 *
 	 * @return the name.
 	 */
 	public String getName() {
@@ -84,6 +85,17 @@ public class Product {
 	}
 
 	/**
+	 * Sets name.
+	 *
+	 * @param name sets the name.
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Gets price.
+	 *
 	 * @return the price.
 	 */
 	public double getPrice() {
@@ -91,6 +103,17 @@ public class Product {
 	}
 
 	/**
+	 * Sets price.
+	 *
+	 * @param price sets the price.
+	 */
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	/**
+	 * Gets stock.
+	 *
 	 * @return the stock.
 	 */
 	public int getStock() {
@@ -98,6 +121,17 @@ public class Product {
 	}
 
 	/**
+	 * Sets stock.
+	 *
+	 * @param stock sets the stock.
+	 */
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	/**
+	 * Gets min.
+	 *
 	 * @return the min.
 	 */
 	public int getMin() {
@@ -105,6 +139,17 @@ public class Product {
 	}
 
 	/**
+	 * Sets min.
+	 *
+	 * @param min sets the min.
+	 */
+	public void setMin(int min) {
+		this.min = min;
+	}
+
+	/**
+	 * Gets max.
+	 *
 	 * @return the max.
 	 */
 	public int getMax() {
@@ -112,6 +157,17 @@ public class Product {
 	}
 
 	/**
+	 * Sets max.
+	 *
+	 * @param max sets the max.
+	 */
+	public void setMax(int max) {
+		this.max = max;
+	}
+
+	/**
+	 * Add associated part.
+	 *
 	 * @param part adds a part to the associated parts list.
 	 */
 	public void addAssociatedPart(Part part) {
@@ -119,6 +175,8 @@ public class Product {
 	}
 
 	/**
+	 * Deleted associated part.
+	 *
 	 * @param selectedAssociatedPart deletes a part from the associated parts list.
 	 * @return true if the part was deleted.
 	 */
@@ -127,6 +185,8 @@ public class Product {
 	}
 
 	/**
+	 * Gets all associated parts.
+	 *
 	 * @return the associated parts list.
 	 */
 	public ObservableList<Part> getAllAssociatedParts() {
