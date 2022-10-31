@@ -3,11 +3,25 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * The type Inventory.
+ */
 public class Inventory {
+	/**
+	 * List that holds all parts.
+	 */
 	private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+	/**
+	 * List that holds all products.
+	 */
 	private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
+	private Inventory() {
+	}
+
 	/**
+	 * Add part.
+	 *
 	 * @param newPart adds a part to the allParts list.
 	 */
 	public static void addPart(Part newPart) {
@@ -15,6 +29,8 @@ public class Inventory {
 	}
 
 	/**
+	 * Add product.
+	 *
 	 * @param newProduct adds a product to the allProducts list.
 	 */
 	public static void addProduct(Product newProduct) {
@@ -22,6 +38,8 @@ public class Inventory {
 	}
 
 	/**
+	 * Lookup part.
+	 *
 	 * @param partId searches for a part in the allParts list by id.
 	 * @return a part with matching part ID, else return null.
 	 */
@@ -33,6 +51,8 @@ public class Inventory {
 	}
 
 	/**
+	 * Lookup product.
+	 *
 	 * @param productId searches for a product in the allProducts list by id.
 	 * @return a product with matching product ID, else return null.
 	 */
@@ -44,6 +64,8 @@ public class Inventory {
 	}
 
 	/**
+	 * Lookup part observable list.
+	 *
 	 * @param partName searches for a part in the allParts list by name.
 	 * @return list of parts that match text in search.
 	 */
@@ -56,6 +78,8 @@ public class Inventory {
 	}
 
 	/**
+	 * Lookup product observable list.
+	 *
 	 * @param productName searches for a product in the allProducts list by name.
 	 * @return list of returns that match text in search.
 	 */
@@ -68,7 +92,9 @@ public class Inventory {
 	}
 
 	/**
-	 * @param index updates an existing part with matching index.
+	 * Update part.
+	 *
+	 * @param index        updates an existing part with matching index.
 	 * @param selectedPart updates a part in the allParts list.
 	 */
 	public static void updatePart(int index, Part selectedPart) {
@@ -76,7 +102,9 @@ public class Inventory {
 	}
 
 	/**
-	 * @param index updates an existing product with matching index.
+	 * Update product.
+	 *
+	 * @param index      updates an existing product with matching index.
 	 * @param newProduct updates a product in the allProducts list.
 	 */
 	public static void updateProduct(int index, Product newProduct) {
@@ -84,6 +112,8 @@ public class Inventory {
 	}
 
 	/**
+	 * Delete part boolean.
+	 *
 	 * @param selectedPart deletes a part from the allParts list.
 	 * @return true if part is deleted, else return false.
 	 */
@@ -95,6 +125,8 @@ public class Inventory {
 	}
 
 	/**
+	 * Delete product boolean.
+	 *
 	 * @param selectedProduct deletes a product from the allProducts list.
 	 * @return true if product is deleted, else return false.
 	 */
@@ -106,6 +138,8 @@ public class Inventory {
 	}
 
 	/**
+	 * Gets all parts.
+	 *
 	 * @return the allParts list.
 	 */
 	public static ObservableList<Part> getAllParts() {
@@ -113,6 +147,8 @@ public class Inventory {
 	}
 
 	/**
+	 * Gets all products.
+	 *
 	 * @return the allProducts list.
 	 */
 	public static ObservableList<Product> getAllProducts() {
