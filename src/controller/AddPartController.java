@@ -106,7 +106,6 @@ public class AddPartController implements Initializable {
 	void savePartOnClick(ActionEvent actionEvent) throws IOException {
 		int id = Inventory.getAllParts().size() + 1;
 		isValid(partNameTextField, partInvTextField, partPriceTextField, partMaxTextField, partMinTextField);
-
 		try {
 			String partName = partNameTextField.getText();
 			int partInv = Integer.parseInt(partInvTextField.getText());

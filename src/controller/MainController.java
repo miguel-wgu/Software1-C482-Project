@@ -21,8 +21,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/**
- * RUNTIME ERROR
+/********RUNTIME ERROR********
  * <p>
  * Originally defined exitOnClick in controller.
  * Made some changes to the mainView.fxml file and
@@ -31,23 +30,11 @@ import java.util.ResourceBundle;
  * Code would not run, and it took quite a while to
  * figure it out. I had to look for types while also
  * trying to make sense of the error message.
- * <p>
- * IMPROVEMENT
- * <p>
- * A future improvement to de-clutter the code would be to
- * transfer the Products table code (under initialize) over
- * to the CommonFunctions class.
- * <p>
- * IMPROVEMENT
- * <p>
- * A future improvement to de-clutter the code would be to
- * transfer the Products table code (under initialize) over
- * to the CommonFunctions class.
  */
 
 
-/**
- * IMPROVEMENT
+/********IMPROVEMENT********
+ *
  * <p>
  * A future improvement to de-clutter the code would be to
  * transfer the Products table code (under initialize) over

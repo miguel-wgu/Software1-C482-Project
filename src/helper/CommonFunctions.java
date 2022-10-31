@@ -10,12 +10,18 @@ import model.Inventory;
 import model.Part;
 
 public class CommonFunctions {
+	private CommonFunctions() {
+	}
 
-	public static void getPartsTable(TableView<Part> partsTableView, TableColumn<Part, Integer> partIDCol,
-	                                 TableColumn<Part, String> partNameCol, TableColumn<Part, Integer> partInvLvlCol,
+	public static void getPartsTable(TableView<Part> partsTableView,
+	                                 TableColumn<Part, Integer> partIDCol,
+	                                 TableColumn<Part, String> partNameCol,
+	                                 TableColumn<Part, Integer> partInvLvlCol,
 	                                 TableColumn<Part, Double> partCostCol,
-	                                 TableView<Part> associatedPartsTableView, ObservableList<Part> associatedParts,
-	                                 TableColumn<Part, Integer> associatedPartIdCol, TableColumn<Part, String> associatedPartNameCol,
+	                                 TableView<Part> associatedPartsTableView,
+	                                 ObservableList<Part> associatedParts,
+	                                 TableColumn<Part, Integer> associatedPartIdCol,
+	                                 TableColumn<Part, String> associatedPartNameCol,
 	                                 TableColumn<Part, Integer> associatedPartInvLvlCol,
 	                                 TableColumn<Part, Double> associatedPartCostCol) {
 		partsTableView.setItems(Inventory.getAllParts());
@@ -23,10 +29,16 @@ public class CommonFunctions {
 		partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 		partInvLvlCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
 		partCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-		getAssociatedPartsTable(associatedPartsTableView, associatedParts, associatedPartIdCol, associatedPartNameCol, associatedPartInvLvlCol, associatedPartCostCol);
+		getAssociatedPartsTable(associatedPartsTableView, associatedParts, associatedPartIdCol,
+				associatedPartNameCol, associatedPartInvLvlCol, associatedPartCostCol);
 	}
 
-	public static void getAssociatedPartsTable(TableView<Part> associatedPartsTableView, ObservableList<Part> associatedParts, TableColumn<Part, Integer> associatedPartIdCol, TableColumn<Part, String> associatedPartNameCol, TableColumn<Part, Integer> associatedPartInvLvlCol, TableColumn<Part, Double> associatedPartCostCol) {
+	public static void getAssociatedPartsTable(TableView<Part> associatedPartsTableView,
+	                                           ObservableList<Part> associatedParts,
+	                                           TableColumn<Part, Integer> associatedPartIdCol,
+	                                           TableColumn<Part, String> associatedPartNameCol,
+	                                           TableColumn<Part, Integer> associatedPartInvLvlCol,
+	                                           TableColumn<Part, Double> associatedPartCostCol) {
 		associatedPartsTableView.setItems(associatedParts);
 		associatedPartIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
 		associatedPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));

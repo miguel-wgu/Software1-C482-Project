@@ -112,7 +112,6 @@ public class ModifyPartController implements Initializable {
 	public void savePartOnClick(ActionEvent actionEvent) {
 		int id = selectedPart.getId();
 		isValid(partNameTextField, partInvTextField, partPriceTextField, partMaxTextField, partMinTextField);
-
 		try {
 			String partName = partNameTextField.getText();
 			int partInv = Integer.parseInt(partInvTextField.getText());
@@ -164,19 +163,16 @@ public class ModifyPartController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		selectedPart = MainController.getSelectedPart();
-
 		partIdTextField.setText(Integer.toString(selectedPart.getId()));
 		partNameTextField.setText(selectedPart.getName());
 		partInvTextField.setText(Integer.toString(selectedPart.getStock()));
 		partPriceTextField.setText(Double.toString(selectedPart.getPrice()));
 		partMaxTextField.setText(Integer.toString(selectedPart.getMax()));
 		partMinTextField.setText(Integer.toString(selectedPart.getMin()));
-
 		if (selectedPart instanceof InHouse part) {
 			partMacIdTextField.setText(Integer.toString((part).getMachineId()));
 			inHouseToggleBtn.setSelected(true);
 			partMacIdLabel.setText("Machine ID");
-
 		} else if (selectedPart instanceof Outsourced part) {
 			partMacIdTextField.setText((part).getCompanyName());
 			outsourcedToggleBtn.setSelected(true);

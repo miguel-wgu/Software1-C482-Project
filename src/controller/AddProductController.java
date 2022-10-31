@@ -174,7 +174,6 @@ public class AddProductController implements Initializable {
 	void saveProductOnClick(ActionEvent actionEvent) throws IOException {
 		int id = Inventory.getAllProducts().size() + 1;
 		isValid(productNameTextField, productInvTextField, productPriceTextField, productMaxTextField, productMinTextField);
-
 		try {
 			String productName = productNameTextField.getText();
 			int productInv = Integer.parseInt(productInvTextField.getText());
