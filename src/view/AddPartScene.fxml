@@ -3,17 +3,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="581.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddPartController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="435.0" prefWidth="581.0" xmlns="http://javafx.com/javafx/19"
+            fx:controller="controller.AddPartController">
    <children>
       <Label layoutX="48.0" layoutY="46.0" text="Add Part" AnchorPane.leftAnchor="50.0">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="14.0"/>
          </font>
       </Label>
-      <RadioButton fx:id="inHouseToggleBtn" layoutX="150.0" layoutY="48.0" mnemonicParsing="false" onAction="#toggleInHouse" selected="true" text="In-House">
+      <RadioButton fx:id="inHouseToggleBtn" layoutX="150.0" layoutY="48.0" mnemonicParsing="false"
+                   onAction="#toggleInHouse" selected="true" text="In-House">
          <toggleGroup>
-            <ToggleGroup fx:id="toggleGrp" />
+            <ToggleGroup fx:id="toggleGrp"/>
          </toggleGroup>
          <font>
             <Font size="14.0" />
@@ -47,7 +49,8 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField fx:id="partIdTextField" editable="false" layoutX="154.0" layoutY="128.0" prefHeight="25.0" prefWidth="121.0" promptText="Auto Gen - Disabled" AnchorPane.leftAnchor="154.0" />
+      <TextField fx:id="partIdTextField" disable="true" editable="false" layoutX="154.0" layoutY="128.0"
+                 prefHeight="25.0" prefWidth="121.0" promptText="Auto Gen - Disabled" AnchorPane.leftAnchor="154.0"/>
       <TextField fx:id="partNameTextField" layoutX="154.0" layoutY="161.0" prefHeight="25.0" prefWidth="121.0" />
       <TextField fx:id="partInvTextField" layoutX="154.0" layoutY="194.0" prefHeight="25.0" prefWidth="121.0" />
       <TextField fx:id="partPriceTextField" layoutX="154.0" layoutY="227.0" prefHeight="25.0" prefWidth="121.0" />

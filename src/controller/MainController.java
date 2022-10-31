@@ -39,6 +39,9 @@ import java.util.ResourceBundle;
  * A future improvement to de-clutter the code would be to
  * transfer the Products table code (under initialize) over
  * to the CommonFunctions class.
+ * <p>
+ * Another future improvement would be to incorporate a CSV file or
+ * a small database so that the user can save their data.
  */
 
 

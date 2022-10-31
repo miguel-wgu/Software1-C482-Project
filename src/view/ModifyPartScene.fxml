@@ -58,8 +58,8 @@
             <Font size="14.0"/>
          </font>
       </Label>
-      <TextField fx:id="partIdTextField" editable="false" layoutX="154.0" layoutY="128.0" prefHeight="25.0"
-                 prefWidth="121.0" promptText="Auto Gen - Disabled" AnchorPane.leftAnchor="154.0"/>
+      <TextField fx:id="partIdTextField" disable="true" editable="false" layoutX="154.0" layoutY="128.0"
+                 prefHeight="25.0" prefWidth="121.0" promptText="Auto Gen - Disabled" AnchorPane.leftAnchor="154.0"/>
       <TextField fx:id="partNameTextField" layoutX="154.0" layoutY="161.0" prefHeight="25.0" prefWidth="121.0"/>
       <TextField fx:id="partInvTextField" layoutX="154.0" layoutY="194.0" prefHeight="25.0" prefWidth="121.0"/>
       <TextField fx:id="partPriceTextField" layoutX="154.0" layoutY="227.0" prefHeight="25.0" prefWidth="121.0"/>
