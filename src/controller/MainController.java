@@ -2,6 +2,7 @@ package controller;
 
 import helper.CommonFunctions;
 import helper.ErrMsg;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +23,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /********RUNTIME ERROR********
- * <p>
+ *
  * Originally defined exitOnClick in controller.
  * Made some changes to the mainView.fxml file and
  * exitOnClick was no longer linked between the
@@ -30,16 +31,13 @@ import java.util.ResourceBundle;
  * Code would not run, and it took quite a while to
  * figure it out. I had to look for types while also
  * trying to make sense of the error message.
- */
-
-
-/********IMPROVEMENT********
  *
- * <p>
+ /********IMPROVEMENT********
+ *
  * A future improvement to de-clutter the code would be to
  * transfer the Products table code (under initialize) over
  * to the CommonFunctions class.
- * <p>
+ *
  * Another future improvement would be to incorporate a CSV file or
  * a small database so that the user can save their data.
  */
@@ -282,11 +280,10 @@ public class MainController implements Initializable {
 
 	/**
 	 * Product delete on click.
-	 * <p>
+	 *
 	 * If no product is selected, an error message
 	 * will be displayed.
-	 * </p>
-	 * <p>
+	 *
 	 * User must confirm deletion of product.
 	 * If product has associated parts, user will
 	 * be notified and product will not be deleted.
@@ -323,7 +320,7 @@ public class MainController implements Initializable {
 	void productSearchOnKeyPress(ActionEvent actionEvent) {
 		TextField search = (TextField) actionEvent.getSource();
 		String input = search.getText();
-		ObservableList<Product> searchResults = Inventory.getAllProducts();
+		ObservableList<Product> searchResults = FXCollections.observableArrayList();
 		for (Product product : allProducts) {
 			if (product.getName().contains(input) || Integer.toString(product.getId()).contains(input))
 				searchResults.add(product);

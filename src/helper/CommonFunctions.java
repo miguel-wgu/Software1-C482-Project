@@ -16,11 +16,6 @@ import model.Part;
 
 import java.io.IOException;
 
-
-/*******IMPROVEMENT*******
- * I can find a way to really clean up and maybe improve the code below.
- */
-
 /**
  * A helper class for common functions to reduce code repetition.
  */

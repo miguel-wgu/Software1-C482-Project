@@ -7,15 +7,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Inventory;
 import model.Part;
 import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static helper.ErrMsg.isValid;
@@ -27,11 +26,9 @@ import static helper.ErrMsg.isValid;
  * I solved this by going back to the MainController making small changes to see
  * anything different would happen. It turns out that selectedProduct was not initialized
  * correctly which explains why the app worked, but would not load the selected product.
- */
-
-/**
+ *
  * Controller class for AddProduct.fxml.
- * <p>
+ *
  * Provides functionality for the add product screen.
  *
  * @author Miguel Guzman
@@ -206,7 +203,12 @@ public class ModifyProductController implements Initializable {
 		Part selectedPart = associatedPartsTableView.getSelectionModel().getSelectedItem();
 		try {
 			if (selectedPart != null) {
-				associatedPartsTableView.getItems().remove(selectedPart);
+				Alert confirm = ErrMsg.createAlert();
+				confirm.setContentText("Are you sure you want to remove the associated part?");
+				Optional<ButtonType> input = confirm.showAndWait();
+				if (input.isPresent() && input.get() == ButtonType.OK) {
+					associatedPartsTableView.getItems().remove(selectedPart);
+				}
 			} else throw new NullPointerException();
 		} catch (NullPointerException e) {
 			ErrMsg.displayErrMsg(14);

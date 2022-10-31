@@ -94,6 +94,11 @@ public class AddPartController implements Initializable {
 	}
 
 	/**
+	 * Increments whenever a new part is saved
+	 */
+	private static int count = 0;
+
+	/**
 	 * Save parts part if validation checks are passed.
 	 * Included appropriate error messages. Includes
 	 * logger to log errors just to get some practice
@@ -104,7 +109,6 @@ public class AddPartController implements Initializable {
 	 */
 	@FXML
 	void savePartOnClick(ActionEvent actionEvent) throws IOException {
-		int id = Inventory.getAllParts().size() + 1;
 		isValid(partNameTextField, partInvTextField, partPriceTextField, partMaxTextField, partMinTextField);
 		try {
 			String partName = partNameTextField.getText();
@@ -119,12 +123,12 @@ public class AddPartController implements Initializable {
 			} else {
 				if (inHouseToggleBtn.isSelected() && verifyMacId(partMacIdTextField)) {
 					int partMachineId = Integer.parseInt(partMacIdTextField.getText());
-					InHouse part = new InHouse(id, partName, partPrice, partInv, partMin, partMax, partMachineId);
+					InHouse part = new InHouse(++count, partName, partPrice, partInv, partMin, partMax, partMachineId);
 					Inventory.addPart(part);
 					CommonFunctions.mainWindow(actionEvent);
 				} else if (outsourcedToggleBtn.isSelected() && verifyCompName(partMacIdTextField)) {
 					String companyName = partMacIdTextField.getText();
-					Outsourced part = new Outsourced(id, partName, partPrice, partInv, partMin, partMax, companyName);
+					Outsourced part = new Outsourced(++count, partName, partPrice, partInv, partMin, partMax, companyName);
 					Inventory.addPart(part);
 					CommonFunctions.mainWindow(actionEvent);
 				}

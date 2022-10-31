@@ -21,7 +21,7 @@ import static helper.ErrMsg.*;
 
 /**
  * The type Modify part controller.
- * <p>
+ *
  * Provides functionality for the modify part screen.
  *
  * @author Miguel Guzman

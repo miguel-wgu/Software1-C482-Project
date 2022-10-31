@@ -113,6 +113,8 @@ public class AddProductController implements Initializable {
 	@FXML
 	private TextField productMinTextField;
 
+	private static int count = 0;
+
 	/**
 	 * Searches for product by name or ID.
 	 * <p>
@@ -171,7 +173,6 @@ public class AddProductController implements Initializable {
 	 */
 	@FXML
 	void saveProductOnClick(ActionEvent actionEvent) throws IOException {
-		int id = Inventory.getAllProducts().size() + 1;
 		isValid(productNameTextField, productInvTextField, productPriceTextField, productMaxTextField, productMinTextField);
 		try {
 			String productName = productNameTextField.getText();
@@ -184,7 +185,7 @@ public class AddProductController implements Initializable {
 				System.Logger logger = System.getLogger("AddProductController");
 				logger.log(System.Logger.Level.ERROR, "Invalid input");
 			} else {
-				Product product = new Product(id, productName, productPrice, productInv, productMin, productMax);
+				Product product = new Product(++count, productName, productPrice, productInv, productMin, productMax);
 				for (Part part : associatedParts) {
 					product.addAssociatedPart(part);
 				}
