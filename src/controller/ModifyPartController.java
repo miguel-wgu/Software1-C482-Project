@@ -21,9 +21,12 @@ import static helper.ErrMsg.*;
 
 /**
  * The type Modify part controller.
+ * <p>
+ * Provides functionality for the modify part screen.
+ *
+ * @author Miguel Guzman
  */
 public class ModifyPartController implements Initializable {
-
 	/**
 	 * The Selected part.
 	 */
@@ -81,25 +84,28 @@ public class ModifyPartController implements Initializable {
 
 
 	/**
-	 * Toggle in house.
+	 * When selected, the text will show "Machine ID."
 	 *
-	 * @param actionEvent the action event
+	 * @param actionEvent the action event.
 	 */
 	public void toggleInHouse(ActionEvent actionEvent) {
 		partMacIdLabel.setText("Machine ID");
 	}
 
 	/**
-	 * Toggle outsource.
+	 * When selected, the text will show "Company Name."
 	 *
-	 * @param actionEvent the action event
+	 * @param actionEvent the action event.
 	 */
 	public void toggleOutsource(ActionEvent actionEvent) {
 		partMacIdLabel.setText("Company Name");
 	}
 
 	/**
-	 * Save part on click.
+	 * Save parts part if validation checks are passed.
+	 * Included appropriate error messages. Includes
+	 * logger to log errors just to get some practice
+	 * with them.
 	 *
 	 * @param actionEvent the action event
 	 */
@@ -115,7 +121,7 @@ public class ModifyPartController implements Initializable {
 			int partMin = Integer.parseInt(partMinTextField.getText());
 
 			if (!(ErrMsg.verifyMin(partMin, partMax)) || !(ErrMsg.verifyInv(partInv, partMin, partMax))) {
-				System.Logger logger = System.getLogger("AddPartController");
+				System.Logger logger = System.getLogger("ModifyPartController");
 				logger.log(System.Logger.Level.ERROR, "Invalid input");
 			} else {
 				if (inHouseToggleBtn.isSelected() && verifyMacId(partMacIdTextField)) {
@@ -124,18 +130,16 @@ public class ModifyPartController implements Initializable {
 					Inventory.addPart(part);
 					Inventory.deletePart(selectedPart);
 					ReturnToMainWindow.mainWindow(actionEvent);
-					System.out.println("part added");
 				} else if (outsourcedToggleBtn.isSelected() && verifyCompName(partMacIdTextField)) {
 					String companyName = partMacIdTextField.getText();
 					Outsourced part = new Outsourced(id, partName, partPrice, partInv, partMin, partMax, companyName);
 					Inventory.addPart(part);
 					Inventory.deletePart(selectedPart);
 					ReturnToMainWindow.mainWindow(actionEvent);
-					System.out.println("part added");
 				}
 			}
 		} catch (NumberFormatException | IOException e) {
-			System.Logger logger = System.getLogger("AddPartController");
+			System.Logger logger = System.getLogger("ModifyPartController");
 			logger.log(System.Logger.Level.ERROR, "Error: " + e.getMessage());
 		}
 	}
@@ -143,18 +147,19 @@ public class ModifyPartController implements Initializable {
 	/**
 	 * Cancel part on click.
 	 *
-	 * @param actionEvent the action event
-	 * @throws IOException the io exception
+	 * @param actionEvent the action event.
+	 * @throws IOException the io exception.
 	 */
 	public void cancelPartOnClick(ActionEvent actionEvent) throws IOException {
 		ReturnToMainWindow.mainWindow(actionEvent);
 	}
 
 	/**
-	 * Initialize.
+	 * Initializes the modify part screen.
+	 * Fills in the text fields with the selected part's information.
 	 *
-	 * @param url            the url
-	 * @param resourceBundle the resource bundle
+	 * @param url            the url.
+	 * @param resourceBundle the resource bundle.
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -95,10 +95,12 @@ public class AddPartController implements Initializable {
 
 	/**
 	 * Save parts part if validation checks are passed.
-	 * Included appropriate error messages.
+	 * Included appropriate error messages. Includes
+	 * logger to log errors just to get some practice
+	 * with them.
 	 *
-	 * @param actionEvent the action event
-	 * @throws IOException the io exception
+	 * @param actionEvent the action event.
+	 * @throws IOException the io exception.
 	 */
 	@FXML
 	void savePartOnClick(ActionEvent actionEvent) throws IOException {
@@ -139,7 +141,7 @@ public class AddPartController implements Initializable {
 	 * Returns to the main window.
 	 *
 	 * @param actionEvent triggered by clicking the cancel button.
-	 * @throws IOException the io exception
+	 * @throws IOException the io exception.
 	 */
 	@FXML
 	void cancelPartOnClick(ActionEvent actionEvent) throws IOException {
