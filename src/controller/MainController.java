@@ -153,7 +153,7 @@ public class MainController implements Initializable {
 	 * Initialize.
 	 *
 	 * @param url            the url
-	 * @param resourceBundle the resource bundles
+	 * @param resourceBundle the resource bundle
 	 */
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		CommonFunctions.getAssociatedPartsTable(partsTableView, allParts, partIDCol, partNameCol, partInvLvlCol, partCostCol);
