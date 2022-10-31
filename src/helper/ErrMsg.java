@@ -11,13 +11,24 @@ import javafx.scene.control.TextField;
  */
 public class ErrMsg {
 	/**
-	 * Constant err to avoid repetition of new Alert.
+	 * The constant info.
 	 */
-	private static final Alert err = new Alert(Alert.AlertType.ERROR);
 	private static final Alert info = new Alert(Alert.AlertType.INFORMATION);
 
 	/**
-	 * Display error message.
+	 * Constant err to avoid repetition of new Alert.
+	 */
+	private static final Alert err = new Alert(Alert.AlertType.ERROR);
+
+	/**
+	 * Instantiates a new Err msg.
+	 */
+	private ErrMsg() {
+
+	}
+
+	/**
+	 * Display error messages depending on the error code.
 	 *
 	 * @param errCode err code to display.
 	 */
@@ -88,6 +99,15 @@ public class ErrMsg {
 		}
 	}
 
+	/**
+	 * Validates various text fields through the application.
+	 *
+	 * @param partNameField  the part name field.
+	 * @param partInvField   the part inv field.
+	 * @param partPriceField the part price field.
+	 * @param partMaxField   the part max field.
+	 * @param partMinField   the part min field.
+	 */
 	public static void isValid(TextField partNameField, TextField partInvField, TextField partPriceField, TextField partMaxField, TextField partMinField) {
 		if (partNameField.getText().isEmpty()) displayErrMsg(1);
 		else if (!(verifyInt(partInvField.getText())) || partInvField.getText().isEmpty())
@@ -100,6 +120,12 @@ public class ErrMsg {
 			ErrMsg.displayErrMsg(7);
 	}
 
+	/**
+	 * Verify mac id boolean.
+	 *
+	 * @param partMacIdField the part mac id field.
+	 * @return the boolean.
+	 */
 	public static boolean verifyMacId(TextField partMacIdField) {
 		if (!(verifyInt(partMacIdField.getText())) || partMacIdField.getText().isEmpty()) {
 			ErrMsg.displayErrMsg(8);
@@ -108,6 +134,12 @@ public class ErrMsg {
 		return true;
 	}
 
+	/**
+	 * Verify comp name boolean.
+	 *
+	 * @param partCompNameField the part comp name field.
+	 * @return the boolean.
+	 */
 	public static boolean verifyCompName(TextField partCompNameField) {
 		if (partCompNameField.getText().isEmpty()) {
 			ErrMsg.displayErrMsg(9);
@@ -116,6 +148,12 @@ public class ErrMsg {
 		return true;
 	}
 
+	/**
+	 * Verify int boolean.
+	 *
+	 * @param str the str.
+	 * @return the boolean.
+	 */
 	public static boolean verifyInt(String str) {
 		try {
 			Integer.parseInt(str);
@@ -125,6 +163,12 @@ public class ErrMsg {
 		}
 	}
 
+	/**
+	 * Verify double boolean.
+	 *
+	 * @param str the str.
+	 * @return the boolean.
+	 */
 	public static boolean verifyDouble(String str) {
 		try {
 			Double.parseDouble(str);
@@ -137,9 +181,9 @@ public class ErrMsg {
 	/**
 	 * Verify min boolean.
 	 *
-	 * @param min the min
-	 * @param max the max
-	 * @return the boolean
+	 * @param min the min.
+	 * @param max the max.
+	 * @return the boolean.
 	 */
 	public static boolean verifyMin(int min, int max) {
 		if (!(min > 0 && min < max)) {
@@ -151,10 +195,10 @@ public class ErrMsg {
 	/**
 	 * Verify inv boolean.
 	 *
-	 * @param inv the inv
-	 * @param min the min
-	 * @param max the max
-	 * @return the boolean
+	 * @param inv the inv.
+	 * @param min the min.
+	 * @param max the max.
+	 * @return the boolean.
 	 */
 	public static boolean verifyInv(int inv, int min, int max) {
 		if (!(inv >= min && inv <= max)) {
@@ -164,9 +208,9 @@ public class ErrMsg {
 	}
 
 	/**
-	 * Create alert alert.
+	 * Create alert.
 	 *
-	 * @return the alert
+	 * @return the alert.
 	 */
 	@FXML
 	public static Alert createAlert() {
