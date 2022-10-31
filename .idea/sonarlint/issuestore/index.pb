@@ -9,3 +9,7 @@ M
 src/view/ModifyPartScene.fxml,5\5\5580edaacb7567d98e4cd9199ba959695e7c91af
 B
 src/main/Main.java,f\e\fe03b4fd3afe162c6e01309b98a22588e093d274
+F
+src/model/InHouse.java,5\1\5167c74a7fc2034c0a89084f3b9c1a90b1aa6345
+D
+src/module-info.java,c\d\cdc434daeee688944ced38ff1c9875422db88382

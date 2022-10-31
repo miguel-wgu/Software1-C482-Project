@@ -16,7 +16,7 @@ public class ErrMsg {
 	 * Constant err to avoid repetition of new Alert.
 	 */
 	private static final Alert err = new Alert(Alert.AlertType.ERROR);
-
+	private static final Alert info = new Alert(Alert.AlertType.INFORMATION);
 	/**
 	 * Display error message.
 	 *
@@ -61,6 +61,22 @@ public class ErrMsg {
 			err.setHeaderText("Company name field is either empty or invalid");
 			err.setContentText("Please enter a valid company name");
 			err.showAndWait();
+		} else if (errCode == 10) {
+			info.setTitle("Not Found");
+			info.setHeaderText("The part you are looking for was not found.");
+			info.showAndWait();
+		} else if (errCode == 11) {
+			err.setTitle("An error has occurred!");
+			err.setHeaderText("Please select a part!");
+			err.showAndWait();
+		} else if (errCode == 12) {
+			err.setTitle("An error has occurred!");
+			err.setHeaderText("Please select a product!");
+			err.showAndWait();
+		} else if (errCode == 13) {
+			info.setTitle("Not Found");
+			info.setHeaderText("The product you are looking for was not found.");
+			info.showAndWait();
 		}
 	}
 
@@ -75,6 +91,18 @@ public class ErrMsg {
 		else if (!(verifyInt(partMinField.getText())) || partMinField.getText().isEmpty())
 			ErrMsg.displayErrMsg(7);
 	}
+
+//	public static void productFieldsValid(TextField productNameField, TextField productInvField, TextField productPriceField, TextField productMaxField, TextField productMinField) {
+//		if (productNameField.getText().isEmpty()) displayErrMsg(1);
+//		else if (!(verifyInt(productInvField.getText())) || productInvField.getText().isEmpty())
+//			ErrMsg.displayErrMsg(4);
+//		else if (!(verifyDouble(productPriceField.getText())) || productPriceField.getText().isEmpty())
+//			ErrMsg.displayErrMsg(5);
+//		else if (!(verifyInt(productMaxField.getText())) || productMaxField.getText().isEmpty())
+//			ErrMsg.displayErrMsg(6);
+//		else if (!(verifyInt(productMinField.getText())) || productMinField.getText().isEmpty())
+//			ErrMsg.displayErrMsg(7);
+//	}
 
 	public static boolean verifyMacId(TextField partMacIdField) {
 		if (!(verifyInt(partMacIdField.getText())) || partMacIdField.getText().isEmpty()){
