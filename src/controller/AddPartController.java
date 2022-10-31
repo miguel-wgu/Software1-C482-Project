@@ -20,13 +20,12 @@ import static helper.ErrMsg.*;
 
 /**
  * Controller class for AddPart.fxml.
- *
+ * <p>
  * Provides functionality for the add part screen.
  *
  * @author Miguel Guzman
  */
 public class AddPartController implements Initializable {
-
 	/**
 	 * The Part id text field.
 	 */
@@ -77,15 +76,9 @@ public class AddPartController implements Initializable {
 	 */
 	@FXML
 	private Label partMacIdLabel;
-	/**
-	 * The Err msg.
-	 */
-	@FXML
-	private ErrMsg errMsg;
-
 
 	/**
-	 * Toggle in house.
+	 * When selected, the text will show "Machine ID".
 	 */
 	@FXML
 	void toggleInHouse() {
@@ -93,7 +86,7 @@ public class AddPartController implements Initializable {
 	}
 
 	/**
-	 * Toggle outsource.
+	 * When selected, the text will show "Company Name".
 	 */
 	@FXML
 	void toggleOutsource() {
@@ -101,7 +94,8 @@ public class AddPartController implements Initializable {
 	}
 
 	/**
-	 * Save part.
+	 * Save parts part if validation checks are passed.
+	 * Included appropriate error messages.
 	 *
 	 * @param actionEvent the action event
 	 * @throws IOException the io exception
@@ -118,7 +112,6 @@ public class AddPartController implements Initializable {
 			int partMax = Integer.parseInt(partMaxTextField.getText());
 			int partMin = Integer.parseInt(partMinTextField.getText());
 
-
 			if (!(ErrMsg.verifyMin(partMin, partMax)) || !(ErrMsg.verifyInv(partInv, partMin, partMax))) {
 				System.Logger logger = System.getLogger("AddPartController");
 				logger.log(System.Logger.Level.ERROR, "Invalid input");
@@ -128,13 +121,11 @@ public class AddPartController implements Initializable {
 					InHouse part = new InHouse(id, partName, partPrice, partInv, partMin, partMax, partMachineId);
 					Inventory.addPart(part);
 					ReturnToMainWindow.mainWindow(actionEvent);
-					System.out.println("part added");
 				} else if (outsourcedToggleBtn.isSelected() && verifyCompName(partMacIdTextField)) {
 					String companyName = partMacIdTextField.getText();
 					Outsourced part = new Outsourced(id, partName, partPrice, partInv, partMin, partMax, companyName);
 					Inventory.addPart(part);
 					ReturnToMainWindow.mainWindow(actionEvent);
-					System.out.println("part added");
 				}
 			}
 		} catch (NumberFormatException e) {
@@ -142,7 +133,6 @@ public class AddPartController implements Initializable {
 			logger.log(System.Logger.Level.ERROR, "Error: " + e.getMessage());
 		}
 	}
-
 
 	/**
 	 * Closes the current window.
@@ -156,10 +146,14 @@ public class AddPartController implements Initializable {
 		ReturnToMainWindow.mainWindow(actionEvent);
 	}
 
-
-
+	/**
+	 * Initialize.
+	 *
+	 * @param url            the url
+	 * @param resourceBundle the resource bundle
+	 */
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-
+		// Empty because there is no need to initialize anything.
 	}
 }
