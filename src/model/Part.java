@@ -1,10 +1,7 @@
 package model;
-/**
- * Supplied class Part.java
- */
 
 /**
- * The type Part.
+ * Part class.
  *
  * @author Miguel Guzman
  */

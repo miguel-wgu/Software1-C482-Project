@@ -1,7 +1,7 @@
 package model;
 
 /**
- * The type In house.
+ * InHouse class.
  */
 public class InHouse extends Part {
 	/**

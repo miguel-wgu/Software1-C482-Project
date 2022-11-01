@@ -26,9 +26,9 @@ import static helper.ErrMsg.isValid;
  * I solved this by going back to the MainController making small changes to see
  * anything different would happen. It turns out that selectedProduct was not initialized
  * correctly which explains why the app worked, but would not load the selected product.
- *
+ *<br><br>
  * Controller class for AddProduct.fxml.
- *
+ *<br><br>
  * Provides functionality for the add product screen.
  *
  * @author Miguel Guzman

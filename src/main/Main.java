@@ -7,7 +7,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
+/********IMPROVEMENTS********
+ *<br>
+ * A future improvement would be to de-clutter the code would be to
+ * transfer the Products table code (under initialize) over
+ * to the CommonFunctions class.
+ *<br><br>
+ * Another future improvement would be to incorporate a CSV file or
+ * a small database so that the user can save their data.
+ * <br><br>
+ * Javadocs can be fund in src/javadocs
+ * <br><br>
  * The Main class is the entry point of the application.
  *
  * @author Miguel Guzman

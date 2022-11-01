@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * The type Inventory.
+ * Inventory class that contains all parts and products.
  */
 public class Inventory {
 	/**

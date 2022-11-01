@@ -22,7 +22,7 @@ import static helper.ErrMsg.isValid;
 
 /**
  * Controller class for AddProduct.fxml.
- * <p>
+ * <br><br>
  * Provides functionality for the add product screen.
  *
  * @author Miguel Guzman
@@ -132,10 +132,8 @@ public class AddProductController implements Initializable {
 
 	/**
 	 * Add to associated parts table and list on click.
-	 *
-	 * @param actionEvent the action event.
 	 */
-	public void addToAssociatedPartsOnClick(ActionEvent actionEvent) {
+	public void addToAssociatedPartsOnClick() {
 		Part selectedPart = partsTableView.getSelectionModel().getSelectedItem();
 		try {
 			if (selectedPart != null) {
@@ -148,10 +146,8 @@ public class AddProductController implements Initializable {
 
 	/**
 	 * Remove associated part on click.
-	 *
-	 * @param actionEvent the action event.
 	 */
-	public void removeAssociatedPartOnClick(ActionEvent actionEvent) {
+	public void removeAssociatedPartOnClick() {
 		Part selectedPart = associatedPartsTableView.getSelectionModel().getSelectedItem();
 		try {
 			if (selectedPart != null) {

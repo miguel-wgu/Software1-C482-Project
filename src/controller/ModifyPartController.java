@@ -21,8 +21,8 @@ import static helper.ErrMsg.*;
 
 /**
  * The type Modify part controller.
- *
- * Provides functionality for the modify part screen.
+ * <br><br>
+ * Provides functionality for the Modify Part window.
  *
  * @author Miguel Guzman
  */
@@ -85,19 +85,15 @@ public class ModifyPartController implements Initializable {
 
 	/**
 	 * When selected, the text will show "Machine ID."
-	 *
-	 * @param actionEvent the action event.
 	 */
-	public void toggleInHouse(ActionEvent actionEvent) {
+	public void toggleInHouse() {
 		partMacIdLabel.setText("Machine ID");
 	}
 
 	/**
 	 * When selected, the text will show "Company Name."
-	 *
-	 * @param actionEvent the action event.
 	 */
-	public void toggleOutsource(ActionEvent actionEvent) {
+	public void toggleOutsource() {
 		partMacIdLabel.setText("Company Name");
 	}
 
@@ -154,7 +150,7 @@ public class ModifyPartController implements Initializable {
 	}
 
 	/**
-	 * Initializes the modify part screen.
+	 * Initializes the Modify Part window.
 	 * Fills in the text fields with the selected part's information.
 	 *
 	 * @param url            the url.

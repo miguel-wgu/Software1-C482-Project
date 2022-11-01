@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /********RUNTIME ERROR********
- *
+ *<br>
  * Originally defined exitOnClick in controller.
  * Made some changes to the mainView.fxml file and
  * exitOnClick was no longer linked between the
@@ -31,21 +31,9 @@ import java.util.ResourceBundle;
  * Code would not run, and it took quite a while to
  * figure it out. I had to look for types while also
  * trying to make sense of the error message.
- *
- /********IMPROVEMENT********
- *
- * A future improvement to de-clutter the code would be to
- * transfer the Products table code (under initialize) over
- * to the CommonFunctions class.
- *
- * Another future improvement would be to incorporate a CSV file or
- * a small database so that the user can save their data.
- */
-
-
-/**
+ * <br><br>
  * Controller class for Main.fxml.
- * <p>
+ * <br><br>
  * Provides functionality for the main screen.
  *
  * @author Miguel Guzman
@@ -280,10 +268,10 @@ public class MainController implements Initializable {
 
 	/**
 	 * Product delete on click.
-	 *
+	 * <br>
 	 * If no product is selected, an error message
 	 * will be displayed.
-	 *
+	 * <br>
 	 * User must confirm deletion of product.
 	 * If product has associated parts, user will
 	 * be notified and product will not be deleted.

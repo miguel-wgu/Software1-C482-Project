@@ -18,6 +18,8 @@ import java.io.IOException;
 
 /**
  * A helper class for common functions to reduce code repetition.
+ *
+ * @author Miguel Guzman
  */
 public class CommonFunctions {
 	private CommonFunctions() {

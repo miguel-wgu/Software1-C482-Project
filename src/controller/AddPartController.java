@@ -20,7 +20,7 @@ import static helper.ErrMsg.*;
 
 /**
  * Controller class for AddPart.fxml.
- * <p>
+ * <br><br>
  * Provides functionality for the add part screen.
  *
  * @author Miguel Guzman
